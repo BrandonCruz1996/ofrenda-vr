@@ -20,7 +20,7 @@ export class botella {
                 new THREE.Vector2(0, 4.75)       
             ];
 
-            const glassGeometry = new THREE.LatheGeometry(points, 64);
+            const glassGeometry = new THREE.LatheGeometry(points, 32);
 
             // Material ajustado a tono ámbar oscuro
             const glassMaterial = new THREE.MeshPhysicalMaterial({
@@ -55,7 +55,7 @@ export class botella {
 
             // Etiqueta
             const labelTexture = new THREE.TextureLoader().load('./texturas/etiqueta_corona.png');
-            const labelGeometry = new THREE.CylinderGeometry(1.155, 1.155, 1.8, 64, 1, true, -Math.PI / 2, Math.PI);
+            const labelGeometry = new THREE.CylinderGeometry(1.155, 1.155, 1.8, 32, 1, true, -Math.PI / 2, Math.PI);
             const labelMaterial = new THREE.MeshStandardMaterial({
                 map: labelTexture,
                 side: THREE.DoubleSide,

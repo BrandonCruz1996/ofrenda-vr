@@ -66,10 +66,10 @@ export class ArcoFlores {
             base.receiveShadow = true;
             flor.add(base);
 
-            crearAnilloPetalos(flor, 18, 0.68, 0.78, 0.00, 0);
-            crearAnilloPetalos(flor, 15, 0.52, 0.65, 0.10, 0.14);
-            crearAnilloPetalos(flor, 12, 0.35, 0.53, 0.20, 0.05);
-            crearAnilloPetalos(flor, 8, 0.16, 0.38, 0.30, 0.18);
+            crearAnilloPetalos(flor, 12, 0.68, 0.78, 0.00, 0);
+            crearAnilloPetalos(flor, 10, 0.52, 0.65, 0.10, 0.14);
+            crearAnilloPetalos(flor, 8, 0.35, 0.53, 0.20, 0.05);
+            crearAnilloPetalos(flor, 5, 0.16, 0.38, 0.30, 0.18);
 
             const centro = new THREE.Mesh(
                 new THREE.SphereGeometry(0.18, 16, 16),

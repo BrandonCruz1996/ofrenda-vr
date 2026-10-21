@@ -28,9 +28,6 @@ export class Candelabro {
             roughness: 0.4
         });
 
-        // Lista para animar las llamas
-        this.llamas = [];
-
         // Crear las partes del candelabro
         this.crearBase();
         this.crearCuerpo();
@@ -133,7 +130,7 @@ export class Candelabro {
         return brazo;
     }
 
-    // Portavelas, velas, llamas y luces
+    // Portavelas, velas y llamas
     crearPortavelaConVela(x, y, z) {
 
         const porta = new THREE.Group();
@@ -168,22 +165,6 @@ export class Candelabro {
         llama.position.y = 0.88;
         porta.add(llama);
 
-        // Luz cálida de la llama
-        const luzFuego = new THREE.PointLight(
-            0xffaa00,
-            1.0,
-            5
-        );
-
-        luzFuego.position.y = 0.88;
-        porta.add(luzFuego);
-
-        // Guardar referencias para la animación
-        this.llamas.push({
-            mesh: llama,
-            luz: luzFuego
-        });
-
         return porta;
     }
 
@@ -212,22 +193,4 @@ export class Candelabro {
         }
     }
 
-    // Animación del parpadeo de las velas
-    actualizar(t) {
-
-        this.llamas.forEach((item, index) => {
-
-            const parpadeo =
-                Math.sin(t * 8 + index) * 0.15 +
-                Math.cos(t * 13 + index) * 0.1;
-
-            item.luz.intensity = 1.8 + parpadeo;
-
-            item.mesh.scale.set(
-                1 + parpadeo * 0.2,
-                1 + parpadeo * 0.3,
-                1 + parpadeo * 0.2
-            );
-        });
-    }
 }

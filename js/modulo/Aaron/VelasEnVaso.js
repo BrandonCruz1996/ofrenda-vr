@@ -5,7 +5,6 @@ export class VelasEnVaso {
 
     constructor() {
         this.VelasEnVaso = new THREE.Group();
-        this.animacionesLlama = [];
 
         this.crearVeladoraEnVaso(0, 0, 0);
     }
@@ -88,42 +87,11 @@ export class VelasEnVaso {
         llama.scale.set(0.6, 1.8, 0.6);
         grupo.add(llama);
 
-        // Luz cálida de la vela
-        const luzVela = new THREE.PointLight(
-            0xffaa33, 2.2, 6
-        );
-
-        luzVela.position.y = 2.2;
-        luzVela.castShadow = true;
-        grupo.add(luzVela);
-
         // Posición de la veladora
         grupo.position.set(x, 0, z);
 
         // Agregar al grupo principal de la instancia
         this.VelasEnVaso.add(grupo);
 
-        // Guardar elementos para animar las llamas
-        this.animacionesLlama.push({
-            llama,
-            luzVela
-        });
-    }
-
-    actualizar(t) {
-
-        this.animacionesLlama.forEach(
-            ({ llama, luzVela }, index) => {
-
-                const parpadeo =
-                    Math.sin(t + index * 10) * 0.08 +
-                    Math.random() * 0.04;
-
-                llama.scale.x = 0.6 + parpadeo;
-                llama.scale.z = 0.6 + parpadeo;
-
-                luzVela.intensity = 2.0 + Math.random() * 0.6;
-            }
-        );
     }
 }

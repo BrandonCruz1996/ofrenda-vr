@@ -138,7 +138,7 @@ export class foto {
         }
 
         // Adorno circular grande de la esquina inferior izquierda
-        const geometriaCirculoGrande = new THREE.CylinderGeometry(0.82, 0.82, 0.18, 48);
+        const geometriaCirculoGrande = new THREE.CylinderGeometry(0.82, 0.82, 0.18, 24);
         const circuloGrande = new THREE.Mesh(geometriaCirculoGrande, materialNegro);
         circuloGrande.rotation.x = Math.PI / 2;
         circuloGrande.position.set(-2.7, 1.05, 0.35);

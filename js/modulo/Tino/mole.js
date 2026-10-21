@@ -17,7 +17,7 @@ export class mole {
             new THREE.Vector2(0, 0.6)       
         ];
 
-        const potGeometry = new THREE.LatheGeometry(points, 64);
+        const potGeometry = new THREE.LatheGeometry(points, 32);
         
         const potMaterial = new THREE.MeshPhysicalMaterial({
             color: 0x9e4318,              
@@ -43,7 +43,7 @@ export class mole {
             this.ofrenda.add(handle);
         }
 
-        const moleGeometry = new THREE.CylinderGeometry(2.05, 1.95, 0.15, 64);
+        const moleGeometry = new THREE.CylinderGeometry(2.05, 1.95, 0.15, 32);
         const moleMaterial = new THREE.MeshPhysicalMaterial({
             color: 0x241107,              
             roughness: 0.3,

@@ -8,10 +8,6 @@ export class Esqueleto {
         // Grupo principal de la instancia
         this.Esqueleto = new THREE.Group();
 
-        // Referencias necesarias para la animación
-        this.llamarAnimacion = true;
-        this.llamas = [];
-
         // Materiales
         this.huesoMat = new THREE.MeshStandardMaterial({
             color: 0xe3dac9,
@@ -667,17 +663,4 @@ export class Esqueleto {
         return pierna;
     }
 
-    // ANIMACIÓN
-
-    actualizar(t) {
-
-        // Movimiento suave del tórax
-        const respiracion = Math.sin(t);
-
-        this.torax.scale.x = 1 + respiracion * 0.012;
-        this.torax.scale.z = 1 + respiracion * 0.012;
-
-        // Movimiento de la cabeza
-        this.cabeza.rotation.y = Math.sin(t * 0.5) * 0.06;
-    }
 }

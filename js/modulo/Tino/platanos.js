@@ -53,7 +53,7 @@ export class platanos {
                 new THREE.Vector2(0.01, -0.48)
             ];
 
-            const bodyGeom = new THREE.LatheGeometry(points, 64);
+            const bodyGeom = new THREE.LatheGeometry(points, 32);
             const pos = bodyGeom.attributes.position;
             for (let i = 0; i < pos.count; i++) {
                 let vx = pos.getX(i);
@@ -142,7 +142,7 @@ export class platanos {
         function createBanana(x, z) {
             const bananaGroup = new THREE.Group();
             const height = 2.4;
-            const geom = new THREE.CylinderGeometry(0.18, 0.18, height, 5, 48);
+            const geom = new THREE.CylinderGeometry(0.18, 0.18, height, 5, 24);
             const pos = geom.attributes.position;
 
             const curve = new THREE.CatmullRomCurve3([

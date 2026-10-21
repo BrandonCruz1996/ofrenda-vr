@@ -16,7 +16,7 @@ export class Dulces {
 
         // Cuerpo exterior del tazón
         const cuerpoTazon = new THREE.Mesh(
-            new THREE.SphereGeometry(3.0, 40, 24, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2),
+            new THREE.SphereGeometry(3.0, 24, 16, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2),
             materialBarro
         );
         cuerpoTazon.scale.set(1, 0.58, 1);
@@ -27,7 +27,7 @@ export class Dulces {
 
         // Interior oscuro
         const interiorTazon = new THREE.Mesh(
-            new THREE.SphereGeometry(2.82, 40, 24, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2),
+            new THREE.SphereGeometry(2.82, 24, 16, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2),
             materialInteriorTazon
         );
         interiorTazon.scale.set(1, 0.58, 1);
@@ -37,7 +37,7 @@ export class Dulces {
 
         // Borde superior
         const bordeTazon = new THREE.Mesh(
-            new THREE.TorusGeometry(3.0, 0.18, 16, 48),
+            new THREE.TorusGeometry(3.0, 0.18, 12, 24),
             materialBarroClaro
         );
         bordeTazon.rotation.x = Math.PI / 2;

@@ -27,25 +27,11 @@ document.body.appendChild(renderizador.domElement);
 
 // Controles
 const controles = new OrbitControls(camara, renderizador.domElement);
-controles.enableDamping = true;
+controles.enableDamping = false;
 controles.target.set(0, 3.6, 0);
 controles.minDistance = 5;
 controles.maxDistance = 22;
 controles.update();
-
-// Luces
-const luzAmbiente = new THREE.AmbientLight(0xffffff, 1.0);
-escena.add(luzAmbiente);
-
-const luzPrincipal = new THREE.DirectionalLight(0xffe6bd, 2.1);
-luzPrincipal.position.set(5, 10, 8);
-luzPrincipal.castShadow = true;
-luzPrincipal.shadow.mapSize.set(2048, 2048);
-escena.add(luzPrincipal);
-
-const luzCalida = new THREE.PointLight(0xff9e45, 1.3, 20);
-luzCalida.position.set(-4, 5, 5);
-escena.add(luzCalida);
 
 // Piso
 const piso = new THREE.Mesh(
@@ -219,15 +205,8 @@ crearMarcoConFoto('./fotos/foto1.jpg', -4, 3.7, 0, 2.7, 3.6);
 crearMarcoConFoto('./fotos/foto2.jpg', 0, 3.7, 0, 2.7, 3.6);
 crearMarcoConFoto('./fotos/foto3.jpg', 4, 3.7, 0, 2.7, 3.6);
 
-// Animación
-function animar() {
-    requestAnimationFrame(animar);
-
-    controles.update();
-    renderizador.render(escena, camara);
-}
-
-animar();
+controles.addEventListener('change', () => renderizador.render(escena, camara));
+renderizador.render(escena, camara);
 
 // Ajustar pantalla
 window.addEventListener('resize', () => {

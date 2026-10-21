@@ -3,7 +3,6 @@ import * as THREE from 'three';
 export class agua {
     constructor() {
         this.ofrenda = new THREE.Group();
-        this.waterMeshes = [];
 
         // Función auxiliar para crear la textura de la jícara
         const createJicaraTexture = (accentHex) => {
@@ -67,7 +66,7 @@ export class agua {
                 new THREE.Vector2(0, 0.15)      
             ];
 
-            const bowlGeom = new THREE.LatheGeometry(points, 64);
+            const bowlGeom = new THREE.LatheGeometry(points, 32);
             const bowlMat = new THREE.MeshPhysicalMaterial({
                 map: createJicaraTexture(accentColor),
                 roughness: 0.3,
@@ -82,7 +81,7 @@ export class agua {
             jicaraGroup.add(bowl);
 
             // Agua dentro de la jícara
-            const waterGeom = new THREE.CylinderGeometry(0.64, 0.58, 0.32, 64, 16);
+            const waterGeom = new THREE.CylinderGeometry(0.64, 0.58, 0.32, 32, 8);
             const waterMat = new THREE.MeshPhysicalMaterial({
                 color: 0x4ac5ee,
                 transparent: true,
@@ -100,35 +99,12 @@ export class agua {
             water.position.y = 0.44;
             jicaraGroup.add(water);
 
-            // Guardamos la referencia para animarla luego
-            this.waterMeshes.push(water);
-
             jicaraGroup.position.set(x, 0, z);
             return jicaraGroup;
         };
 
         // Creamos y agregamos las 3 jícaras al grupo principal de la clase
         this.ofrenda.add(createJicara(0, 0, '#e63946')); 
-    }
-
-    // Método para animar el agua (las olas)
-    update(elapsedTime) {
-        this.waterMeshes.forEach((water, index) => {
-            const pos = water.geometry.attributes.position;
-            const count = pos.count;
-
-            for (let i = 0; i < count; i++) {
-                const y = pos.getY(i);
-                if (y > 0.1) {
-                    const x = pos.getX(i);
-                    const z = pos.getZ(i);
-                    const wave = Math.sin(x * 6 + elapsedTime * 2.5 + index) * 0.008 +
-                                 Math.cos(z * 6 + elapsedTime * 2.0 + index) * 0.008;
-                    pos.setY(i, 0.16 + wave);
-                }
-            }
-            pos.needsUpdate = true;
-        });
     }
 
     // Método obligatorio para que modulos.js pueda agregarlo a la escena

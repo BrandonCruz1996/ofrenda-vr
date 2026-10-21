@@ -6,47 +6,10 @@ export class CalaveraAzucar {
 
         this.CalaveraAzucar = new THREE.Group();
 
-        function crearTexturaAzucar() {
-            const canvas = document.createElement('canvas');
-            canvas.width = 512;
-            canvas.height = 512;
-            const ctx = canvas.getContext('2d');
-
-            ctx.fillStyle = '#6e4327';
-            ctx.fillRect(0, 0, 512, 512);
-
-            for (let i = 0; i < 90000; i++) {
-                const x = Math.random() * 512;
-                const y = Math.random() * 512;
-                const size = Math.random() * 2 + 0.5;
-                const alpha = Math.random() * 0.35;
-
-                ctx.fillStyle = Math.random() > 0.4
-                    ? `rgba(240, 200, 150, ${alpha})`
-                    : `rgba(40, 20, 10, ${alpha})`;
-
-                ctx.fillRect(x, y, size, size);
-            }
-
-            const texture = new THREE.CanvasTexture(canvas);
-            texture.wrapS = THREE.RepeatWrapping;
-            texture.wrapT = THREE.RepeatWrapping;
-            texture.repeat.set(4, 4);
-            texture.generateMipmaps = false;
-            texture.minFilter = THREE.LinearFilter;
-
-            return texture;
-        }
-
-        const texturaAzucar = crearTexturaAzucar();
-
         const azucarCafeMat = new THREE.MeshStandardMaterial({
             color: 0x5a3825,
             roughness: 0.85,
-            metalness: 0.05,
-            map: texturaAzucar,
-            bumpMap: texturaAzucar,
-            bumpScale: 0.06
+            metalness: 0.05
         });
 
         const betunBlanco = new THREE.MeshStandardMaterial({
@@ -130,7 +93,7 @@ export class CalaveraAzucar {
         // CRANEO
 
         const craneoGeo = new THREE.SphereGeometry(
-            radioCraneo, 64, 64
+            radioCraneo, 32, 32
         );
 
         const craneo = new THREE.Mesh(craneoGeo, azucarCafeMat);
@@ -320,25 +283,6 @@ export class CalaveraAzucar {
         }
 
         pegarAlCraneo(bocaGroup, -30, 0, 0.08);
-
-        // ILUMINACION
-
-        const luzAmbiente = new THREE.AmbientLight(0xffffff, 0.1);
-        this.CalaveraAzucar.add(luzAmbiente);
-
-        const luzPrincipal = new THREE.DirectionalLight(0xffffff, 0.1);
-
-        luzPrincipal.position.set(5, 10, 8);
-        luzPrincipal.castShadow = true;
-        luzPrincipal.shadow.mapSize.set(2048, 2048);
-
-        this.CalaveraAzucar.add(luzPrincipal);
-
-        const luzCalida = new THREE.PointLight(0xff9933, 1.5, 5);
-
-        luzCalida.position.set(0, 5, 8);
-
-        this.CalaveraAzucar.add(luzCalida);
 
     }
 

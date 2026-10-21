@@ -13,7 +13,7 @@ export class panM {
             ctx.fillStyle = '#808080';
             ctx.fillRect(0, 0, 512, 512);
 
-            for (let i = 0; i < 15000; i++) {
+            for (let i = 0; i < 4000; i++) {
                 const x = Math.random() * 512;
                 const y = Math.random() * 512;
                 const r = Math.random() * 1.5 + 0.5;
@@ -43,7 +43,7 @@ export class panM {
             clearcoatRoughness: 0.3,
         });
 
-        const baseGeom = new THREE.SphereGeometry(1.2, 64, 64);
+        const baseGeom = new THREE.SphereGeometry(1.2, 32, 32);
         const pos = baseGeom.attributes.position;
 
         for (let i = 0; i < pos.count; i++) {
@@ -119,7 +119,7 @@ export class panM {
             opacity: 0.92,
         });
 
-        const sugarCount = 850;
+        const sugarCount = 300;
         const sugarInstanced = new THREE.InstancedMesh(sugarGeom, sugarMat, sugarCount);
         const dummy = new THREE.Object3D();
 
